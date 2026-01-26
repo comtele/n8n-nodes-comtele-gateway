@@ -1,6 +1,6 @@
-import { ICredentialType, INodeProperties, IAuthenticateResponse, ICredentialTestRequest } from 'n8n-workflow';
+import { ICredentialType, INodeProperties, ICredentialTestRequest, IAuthenticateGeneric } from 'n8n-workflow';
 
-export class ComteleGatewayApiCredential implements ICredentialType {
+export class ComteleGatewayApi implements ICredentialType {
   name = 'comteleGatewayApi';
   displayName = 'Comtele Gateway API';
   documentationUrl = 'https://docs.comtele.com.br/api';
@@ -18,7 +18,7 @@ export class ComteleGatewayApiCredential implements ICredentialType {
     },
   ];
 
-  authenticate: IAuthenticateResponse = {
+  authenticate: IAuthenticateGeneric = {
     type: 'generic',
     properties: {
       headers: {
