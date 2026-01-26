@@ -2,14 +2,16 @@ import { INodeType, INodeTypeDescription } from 'n8n-workflow';
 
 export class ComteleGateway implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Comtele Gateway',
+		displayName: 'SMS & RCS Message Gateway by Comtele',
+		documentationUrl: 'https://developers.comtele.com.br/',
 		name: 'comteleGateway',
 		icon: 'file:comtelegateway.svg',
 		group: ['transform'],
 		version: 1,
-		description: 'Integrate with Comtele Gateway API for messaging operations',
+		subtitle: '={{$parameter["operation"]}}',
+		description: 'Gateway for sending SMS/RCS messages',
 		defaults: {
-			name: 'Comtele Gateway',
+			name: 'SMS & RCS Message Gateway by Comtele',
 		},
 		inputs: ['main'],
 		outputs: ['main'],
@@ -34,88 +36,22 @@ export class ComteleGateway implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
-						name: 'Cancel Messages Request',
-						value: 'cancelMessagesRequest',
-						description: 'Cancel a message request',
-						action: 'Cancel messages request',
+						name: 'Send SMS Message',
+						value: 'sendSmsMessage',
+						description: 'Send SMS message',
+						action: 'Send SMS message',
 						routing: {
 							request: {
 								method: 'POST',
-								url: '/messages/request/cancel',
+								url: '/messages/sms/send',
 								body: {
-									requestId: '={{$parameter.requestId}}',
-								},
-							},
-						},
-					},
-					{
-						name: 'Get Balance',
-						value: 'getBalance',
-						description: 'Get account balance',
-						action: 'Get balance',
-						routing: {
-							request: {
-								method: 'GET',
-								url: '/balance',
-							},
-						},
-					},
-					{
-						name: 'Get Contact Groups',
-						value: 'getContactGroups',
-						description: 'Get all contact groups',
-						action: 'Get contact groups',
-						routing: {
-							request: {
-								method: 'GET',
-								url: '/contacts',
-							},
-						},
-					},
-					{
-						name: 'Get Messages Requests Report',
-						value: 'getMessagesRequestsReport',
-						description: 'Get messages requests report with filters',
-						action: 'Get messages requests report',
-						routing: {
-							request: {
-								method: 'GET',
-								url: '/reports/messages/requests',
-								qs: {
-									startDate: '={{$parameter.startDate}}',
-									endDate: '={{$parameter.endDate}}',
-								},
-							},
-						},
-					},
-					{
-						name: 'Get Routes',
-						value: 'getRoutes',
-						description: 'Get all available routes',
-						action: 'Get routes',
-						routing: {
-							request: {
-								method: 'GET',
-								url: '/routes',
-							},
-						},
-					},
-					{
-						name: 'Received Messages Report',
-						value: 'receivedMessagesReport',
-						description: 'Get received messages report',
-						action: 'Get received messages report',
-						routing: {
-							request: {
-								method: 'GET',
-								url: '/reports/messages/received',
-								qs: {
-									startDate: '={{$parameter.startDate}}',
-									endDate: '={{$parameter.endDate}}',
-									'={{$parameter.statuses ? "statuses" : undefined}}': '={{$parameter.statuses}}',
-									'={{$parameter.sender ? "sender" : undefined}}': '={{$parameter.sender}}',
-									skip: '={{$parameter.skip}}',
-									limit: '={{$parameter.limit}}',
+									receivers: '={{$parameter.receivers.map(r => r.trim())}}',
+									contactGroups: '={{$parameter.contactGroups.map(cg => parseInt(cg, 10))}}',
+									message: '={{$parameter.message}}',
+									route: '={{$parameter.route}}',
+									'={{$parameter.scheduleDate ? "scheduleDate" : undefined}}': '={{$parameter.scheduleDate}}',
+									'={{$parameter.custom ? "custom" : undefined}}': '={{$parameter.custom}}',
+									'={{$parameter.tag ? "tag" : undefined}}': '={{$parameter.tag}}',
 								},
 							},
 						},
@@ -210,22 +146,116 @@ export class ComteleGateway implements INodeType {
 						},
 					},
 					{
-						name: 'Send SMS Message',
-						value: 'sendSmsMessage',
-						description: 'Send SMS message',
-						action: 'Send SMS message',
+						name: 'Cancel Messages Request',
+						value: 'cancelMessagesRequest',
+						description: 'Cancel a message request',
+						action: 'Cancel messages request',
 						routing: {
 							request: {
 								method: 'POST',
-								url: '/messages/sms/send',
+								url: '/messages/request/cancel',
 								body: {
-									receivers: '={{$parameter.receivers.map(r => r.trim())}}',
-									contactGroups: '={{$parameter.contactGroups.map(cg => parseInt(cg, 10))}}',
-									message: '={{$parameter.message}}',
-									route: '={{$parameter.route}}',
-									'={{$parameter.scheduleDate ? "scheduleDate" : undefined}}': '={{$parameter.scheduleDate}}',
-									'={{$parameter.custom ? "custom" : undefined}}': '={{$parameter.custom}}',
-									'={{$parameter.tag ? "tag" : undefined}}': '={{$parameter.tag}}',
+									requestId: '={{$parameter.requestId}}',
+								},
+							},
+						},
+					},
+					{
+						name: 'Get Balance',
+						value: 'getBalance',
+						description: 'Get account balance',
+						action: 'Get balance',
+						routing: {
+							request: {
+								method: 'GET',
+								url: '/balance',
+							},
+						},
+					},
+					{
+						name: 'Get Contact Groups',
+						value: 'getContactGroups',
+						description: 'Get all contact groups',
+						action: 'Get contact groups',
+						routing: {
+							request: {
+								method: 'GET',
+								url: '/contacts',
+							},
+						},
+					},
+					{
+						name: 'Get Messages Requests Report',
+						value: 'getMessagesRequestsReport',
+						description: 'Get messages requests report with filters',
+						action: 'Get messages requests report',
+						routing: {
+							request: {
+								method: 'GET',
+								url: '/reports/messages/requests',
+								qs: {
+									startDate: '={{$parameter.startDate}}',
+									endDate: '={{$parameter.endDate}}',
+									skip: '={{$parameter.skip}}',
+									limit: '={{$parameter.limit}}',
+								},
+							},
+						},
+					},
+					{
+						name: 'Get Routes',
+						value: 'getRoutes',
+						description: 'Get all available routes',
+						action: 'Get routes',
+						routing: {
+							request: {
+								method: 'GET',
+								url: '/routes',
+							},
+						},
+					},
+					{
+						name: 'Received Messages Report',
+						value: 'receivedMessagesReport',
+						description: 'Get received messages report',
+						action: 'Get received messages report',
+						routing: {
+							send: {
+								preSend: [
+									async function (this, requestOptions) {
+										const statuses = this.getNodeParameter('statuses', 0) as string[];
+										if (statuses && Array.isArray(statuses) && statuses.length > 0) {
+											const baseUrl = requestOptions.url || '';
+											const params = new URLSearchParams();
+											
+											// Add existing query parameters
+											if (requestOptions.qs) {
+												for (const [key, value] of Object.entries(requestOptions.qs)) {
+													if (value !== undefined && value !== null) {
+														params.append(key, String(value));
+													}
+												}
+											}
+											
+											// Add statuses as multiple query parameters
+											statuses.forEach(status => params.append('statuses', status));
+											
+											requestOptions.url = `${baseUrl}?${params.toString()}`;
+											delete requestOptions.qs;
+										}
+										return requestOptions;
+									},
+								],
+							},
+							request: {
+								method: 'GET',
+								url: '/reports/messages/received',
+								qs: {
+									startDate: '={{$parameter.startDate}}',
+									endDate: '={{$parameter.endDate}}',
+									'={{$parameter.sender ? "sender" : undefined}}': '={{$parameter.sender}}',
+									skip: '={{$parameter.skip}}',
+									limit: '={{$parameter.limit}}',
 								},
 							},
 						},
@@ -236,6 +266,33 @@ export class ComteleGateway implements INodeType {
 						description: 'Get sent messages report',
 						action: 'Get sent messages report',
 						routing: {
+							send: {
+								preSend: [
+									async function (this, requestOptions) {
+										const statuses = this.getNodeParameter('statuses', 0) as string[];
+										if (statuses && Array.isArray(statuses) && statuses.length > 0) {
+											const baseUrl = requestOptions.url || '';
+											const params = new URLSearchParams();
+											
+											// Add existing query parameters
+											if (requestOptions.qs) {
+												for (const [key, value] of Object.entries(requestOptions.qs)) {
+													if (value !== undefined && value !== null) {
+														params.append(key, String(value));
+													}
+												}
+											}
+											
+											// Add statuses as multiple query parameters
+											statuses.forEach(status => params.append('statuses', status));
+											
+											requestOptions.url = `${baseUrl}?${params.toString()}`;
+											delete requestOptions.qs;
+										}
+										return requestOptions;
+									},
+								],
+							},
 							request: {
 								method: 'GET',
 								url: '/reports/messages/sent',
@@ -248,14 +305,13 @@ export class ComteleGateway implements INodeType {
 									'={{$parameter.tag ? "tag" : undefined}}': '={{$parameter.tag}}',
 									skip: '={{$parameter.skip}}',
 									limit: '={{$parameter.limit}}',
-									'={{$parameter.statuses ? "statuses" : undefined}}': '={{$parameter.statuses}}',
 								},
 							},
 						},
 					},
 				],
 				required: true,
-				default: 'getBalance',
+				default: 'sendSmsMessage',
 			},
 
 			// Cancel Messages Request Fields
@@ -264,6 +320,7 @@ export class ComteleGateway implements INodeType {
 				name: 'requestId',
 				type: 'string',
 				required: true,
+				placeholder: '1d333cee-5cfa-4f10-9211-5e5886420220',
 				default: '',
 				description: 'The ID of the message request to cancel',
 				displayOptions: {
@@ -308,10 +365,13 @@ export class ComteleGateway implements INodeType {
 				displayName: 'Statuses',
 				name: 'statuses',
 				type: 'string',
+				typeOptions: {
+					multipleValues: true,
+				},
 				required: false,
-				default: '',
-				placeholder: 'Received,Read',
-				description: 'Filter by message statuses (comma-separated)',
+				default: [],
+				placeholder: 'Sent',
+				description: 'Filter by message statuses',
 				displayOptions: {
 					show: {
 						operation: ['receivedMessagesReport', 'sentMessagesReport'],
@@ -324,6 +384,7 @@ export class ComteleGateway implements INodeType {
 				type: 'string',
 				required: false,
 				default: '',
+				placeholder: '11999997777',
 				description: 'Filter by sender phone number',
 				displayOptions: {
 					show: {
@@ -340,7 +401,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Number of records to skip',
 				displayOptions: {
 					show: {
-						operation: ['receivedMessagesReport', 'sentMessagesReport'],
+						operation: ['getMessagesRequestsReport', 'receivedMessagesReport', 'sentMessagesReport'],
 					},
 				},
 			},
@@ -353,7 +414,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Maximum number of records to return',
 				displayOptions: {
 					show: {
-						operation: ['receivedMessagesReport', 'sentMessagesReport'],
+						operation: ['getMessagesRequestsReport', 'receivedMessagesReport', 'sentMessagesReport'],
 					},
 				},
 			},
@@ -367,6 +428,7 @@ export class ComteleGateway implements INodeType {
 					multipleValues: true,
 				},
 				required: true,
+				placeholder: '11999997777',
 				default: [],
 				description: 'List of recipient phone numbers',
 				displayOptions: {
@@ -490,6 +552,7 @@ export class ComteleGateway implements INodeType {
 				type: 'string',
 				required: true,
 				default: '',
+				placeholder: 'Hello, this is a test message',
 				description: 'Message content',
 				displayOptions: {
 					show: {
@@ -531,6 +594,7 @@ export class ComteleGateway implements INodeType {
 				type: 'string',
 				required: false,
 				default: '',
+				placeholder: 'https://example.com/image.jpg',
 				description: 'Card image URL',
 				displayOptions: {
 					show: {
@@ -565,6 +629,7 @@ export class ComteleGateway implements INodeType {
 								name: 'url',
 								type: 'string',
 								default: '',
+								placeholder: 'https://example.com',
 								description: 'Button URL',
 							},
 						],
@@ -612,6 +677,7 @@ export class ComteleGateway implements INodeType {
 								name: 'cardImage',
 								type: 'string',
 								default: '',
+								placeholder: 'https://example.com/image.jpg',
 								description: 'Card image URL',
 							},
 							{
@@ -639,6 +705,7 @@ export class ComteleGateway implements INodeType {
 												displayName: 'URL',
 												name: 'url',
 												type: 'string',
+												placeholder: 'https://example.com',
 												default: '',
 												description: 'Button URL',
 											},
@@ -663,7 +730,8 @@ export class ComteleGateway implements INodeType {
 				type: 'string',
 				required: true,
 				default: '',
-				description: 'File URL or base64 content',
+				placeholder: 'https://example.com/file.pdf',
+				description: 'File URL content',
 				displayOptions: {
 					show: {
 						operation: ['sendRcsFileMessage'],
@@ -691,6 +759,7 @@ export class ComteleGateway implements INodeType {
 				type: 'string',
 				required: false,
 				default: '',
+				placeholder: '11999997777',
 				description: 'Filter by receiver phone number',
 				displayOptions: {
 					show: {
@@ -704,7 +773,7 @@ export class ComteleGateway implements INodeType {
 				type: 'string',
 				required: false,
 				default: '',
-				description: 'Filter by message content',
+				placeholder: 'Hello, this is a test message',
 				displayOptions: {
 					show: {
 						operation: ['sentMessagesReport'],

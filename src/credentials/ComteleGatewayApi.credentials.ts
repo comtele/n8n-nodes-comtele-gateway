@@ -3,7 +3,8 @@ import { ICredentialType, INodeProperties, ICredentialTestRequest, IAuthenticate
 export class ComteleGatewayApi implements ICredentialType {
   name = 'comteleGatewayApi';
   displayName = 'Comtele Gateway API';
-  documentationUrl = 'https://docs.comtele.com.br/api';
+  documentationUrl = 'https://developers.comtele.com.br/';
+  icon = 'file:comtelegateway.svg' as const;
   properties: INodeProperties[] = [
     {
       displayName: 'API Key',
