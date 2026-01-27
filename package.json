@@ -1,0 +1,56 @@
+{
+  "name": "n8n-nodes-comtele-gateway",
+  "version": "1.0.0",
+  "description": "N8N community node for Comtele Gateway API integration",
+  "author": "Comtele",
+  "license": "MIT",
+  "homepage": "https://github.com/comtele/n8n-nodes-comtele-gateway",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/comtele/n8n-nodes-comtele-gateway.git"
+  },
+  "keywords": [
+    "n8n",
+    "n8n-community-node-package",
+    "comtele",
+    "gateway",
+    "rcs",
+    "sms",
+    "messaging"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "nodes": [
+      "dist/nodes/ComteleGateway/ComteleGateway.node.js"
+    ],
+    "credentials": [
+      "dist/credentials/ComteleGatewayApi.credentials.js"
+    ]
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.40.0",
+    "n8n-core": "^2.5.0",
+    "n8n-workflow": "^2.5.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "overrides": {
+    "form-data": "^4.0.4",
+    "lodash": "^4.17.21"
+  }
+}
