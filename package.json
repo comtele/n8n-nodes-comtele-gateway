@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-comtele-gateway",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Send SMS and RCS messages via Comtele Gateway",
   "author": {
     "name": "Comtele",
