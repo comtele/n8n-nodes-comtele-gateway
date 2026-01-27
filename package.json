@@ -1,8 +1,12 @@
 {
   "name": "n8n-nodes-comtele-gateway",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Send SMS and RCS messages via Comtele Gateway",
-  "author": "Comtele",
+  "author": {
+    "name": "Comtele",
+    "email": "suporte@comtele.com.br",
+    "url": "https://www.comtele.com.br"
+  },
   "license": "MIT",
   "homepage": "https://github.com/comtele/n8n-nodes-comtele-gateway",
   "repository": {
