@@ -1,6 +1,6 @@
 # n8n-nodes-comtele-gateway
 
-This is an n8n community node for integrating with the **Comtele Gateway API**. It provides a comprehensive set of operations for managing messaging, including SMS, RCS (Rich Communication Services), reports, and account management.
+This is an n8n community node for integrating with the **Comtele Gateway API**. It provides a comprehensive set of operations for managing messaging, including SMS, RCS (Rich Communication Services), reports, and additional services.
 
 ## Features
 
@@ -23,9 +23,9 @@ The node supports 12 different operations:
 
 ### Using n8n UI
 
-1. Go to **Settings > Community Nodes**
-2. Search for `n8n-nodes-comtele-gateway`
-3. Click **Install**
+1. Create a Workflow
+2. Click on + to add a new node
+3. Search for `SMS & RCS Message Gateway by Comtele`
 
 ### Using npm
 
@@ -44,7 +44,7 @@ In n8n:
 
 ### 2. Add Node to Workflow
   1. Create a new workflow
-  2. Add a new node and search for Comtele Gateway
+  2. Add a new node and search for `SMS & RCS Message Gateway by Comtele`
   3. Select the operation you want to perform
   4. Configure the parameters based on the selected operation
   5. Test the connection
@@ -63,7 +63,7 @@ Node Configuration:
 ```bash
 Node Configuration:
 - Operation: Send SMS Message
-- Receivers: ["+5511999999999"]
+- Receivers: ["11999999999"]
 - Message: "Hello from N8N!"
 - Route: 1
 - Tag: "marketing"
@@ -74,7 +74,7 @@ Node Configuration:
 ```bash
 Node Configuration:
 - Operation: Send RCS Card Message
-- Receivers: ["+5511999999999"]
+- Receivers: ["11999999999"]
 - Route: 1
 - Card Title: "Special Offer"
 - Card Message: "Get 50% off today!"
@@ -109,7 +109,7 @@ Examples:
 ## Parameters
 ### Common Parameters
 
-- Receivers: Array of phone numbers (with country code, e.g., "+5511999999999")
+- Receivers: Array of phone numbers (with country code, e.g., "11999999999")
 - Contact Groups: Array of contact group IDs
 - Route: Route ID to use for sending messages
 - Schedule Date (optional): Date and time to schedule message sending
