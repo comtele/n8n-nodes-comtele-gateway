@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-comtele-gateway",
   "version": "1.0.0",
-  "description": "N8N community node for Comtele Gateway API integration",
+  "description": "Send SMS and RCS messages via Comtele Gateway",
   "author": "Comtele",
   "license": "MIT",
   "homepage": "https://github.com/comtele/n8n-nodes-comtele-gateway",
