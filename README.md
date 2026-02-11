@@ -148,7 +148,7 @@ All responses follow the standard Comtele API format:
 For issues, questions, or suggestions, please visit:
 
 - [GitHub Repository](https://github.com/comtele/n8n-nodes-comtele-gateway)
-- [Comtele Documentation](https://docs.comtele.com.br/)
+- [Comtele Documentation](https://developers.comtele.com.br/)
 
 ## License
 This node is licensed under the MIT License. See LICENSE file for details.
