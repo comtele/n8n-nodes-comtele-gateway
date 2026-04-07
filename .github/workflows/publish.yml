@@ -19,6 +19,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Print trusted publishing context
+        shell: bash
+        run: |
+          echo "event_name=${GITHUB_EVENT_NAME}"
+          echo "repository=${GITHUB_REPOSITORY}"
+          echo "ref=${GITHUB_REF}"
+          echo "ref_name=${GITHUB_REF_NAME}"
+          echo "workflow=${GITHUB_WORKFLOW}"
+          echo "workflow_ref=${GITHUB_WORKFLOW_REF}"
+          echo "workflow_sha=${GITHUB_WORKFLOW_SHA}"
+          echo "actor=${GITHUB_ACTOR}"
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
