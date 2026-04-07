@@ -26,7 +26,7 @@
     "messaging"
   ],
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=18.0.0"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -54,11 +54,11 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.40.0",
-    "n8n-core": "^2.5.0",
-    "n8n-workflow": "^2.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.0",
+    "@typescript-eslint/parser": "^8.58.0",
+    "eslint": "^9.0.0",
+    "n8n-core": "^2.16.0",
+    "n8n-workflow": "^2.16.0",
     "prettier": "^3.0.0",
     "typescript": "^5.0.0"
   }
