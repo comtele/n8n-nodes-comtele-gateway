@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-comtele-gateway",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Send SMS and RCS messages via Comtele Gateway",
   "peerDependencies": {
     "n8n-workflow": "*"
