@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-comtele-gateway",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Send SMS and RCS messages via Comtele Gateway",
   "peerDependencies": {
     "n8n-workflow": "*"
@@ -48,15 +48,15 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "lint": "eslint src --fix",
-    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint \"{index.ts,credentials/**/*.ts,nodes/**/*.ts,types/**/*.ts}\" --fix",
+    "format": "prettier --write \"{index.ts,credentials/**/*.ts,nodes/**/*.ts,types/**/*.ts}\"",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "^8.58.0",
     "@typescript-eslint/parser": "^8.58.0",
-    "eslint": "^9.0.0",
+    "eslint": "^8.57.1",
     "n8n-core": "^2.16.0",
     "n8n-workflow": "^2.16.0",
     "prettier": "^3.0.0",
