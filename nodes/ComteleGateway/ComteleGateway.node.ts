@@ -1,4 +1,4 @@
-import { INodeType, INodeTypeDescription } from 'n8n-workflow';
+import { INodeType, INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
 
 export class ComteleGateway implements INodeType {
 	description: INodeTypeDescription = {
@@ -27,8 +27,8 @@ export class ComteleGateway implements INodeType {
 			},
 			alias: ['sms', 'rcs', 'message', 'messaging', 'text message', 'gateway'],
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: 'comteleGatewayApi',
@@ -50,16 +50,16 @@ export class ComteleGateway implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
-						name: 'SMS',
-						value: 'sms',
+						name: 'Others',
+						value: 'others',
 					},
 					{
 						name: 'RCS',
 						value: 'rcs',
 					},
 					{
-						name: 'Others',
-						value: 'others',
+						name: 'SMS',
+						value: 'sms',
 					},
 				],
 				default: 'sms',
