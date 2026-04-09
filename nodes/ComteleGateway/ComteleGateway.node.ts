@@ -15,9 +15,6 @@ export class ComteleGateway implements INodeType {
 		},
 		codex: {
 			categories: ['Communication'],
-			subcategories: {
-				Communication: ['Messaging'],
-			},
 			resources: {
 				primaryDocumentation: [
 					{
