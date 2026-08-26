@@ -26,6 +26,14 @@ jobs:
           registry-url: https://registry.npmjs.org
           cache: npm
 
+      - name: Upgrade npm for trusted publishing
+        run: npm install -g npm@latest
+
+      - name: Print Node and npm versions
+        run: |
+          node --version
+          npm --version
+
       - name: Install dependencies
         run: npm ci
 
@@ -69,6 +77,7 @@ jobs:
           echo "Using npm trusted publishing with GitHub OIDC provenance."
           echo "Repository: ${GITHUB_REPOSITORY}"
           echo "Ref: ${GITHUB_REF}"
+          npm config get registry
 
       - name: Publish to npm
         if: steps.version_check.outputs.exists == 'false'
