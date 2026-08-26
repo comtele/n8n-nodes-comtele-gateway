@@ -81,7 +81,6 @@ export class ComteleGateway implements INodeType {
 					{
 						name: 'Send SMS Message',
 						value: 'sendSmsMessage',
-						description: 'Send SMS message',
 						action: 'Send SMS message',
 						routing: {
 							request: {
@@ -138,7 +137,6 @@ export class ComteleGateway implements INodeType {
 					{
 						name: 'Send RCS Card Message',
 						value: 'sendRcsCardMessage',
-						description: 'Send RCS card message',
 						action: 'Send RCS card message',
 						routing: {
 							request: {
@@ -162,7 +160,6 @@ export class ComteleGateway implements INodeType {
 					{
 						name: 'Send RCS Carousel Message',
 						value: 'sendRcsCarouselMessage',
-						description: 'Send RCS carousel message',
 						action: 'Send RCS carousel message',
 						routing: {
 							request: {
@@ -184,7 +181,6 @@ export class ComteleGateway implements INodeType {
 					{
 						name: 'Send RCS File Message',
 						value: 'sendRcsFileMessage',
-						description: 'Send RCS file message',
 						action: 'Send RCS file message',
 						routing: {
 							request: {
@@ -444,8 +440,7 @@ export class ComteleGateway implements INodeType {
 				typeOptions: {
 					multipleValues: true,
 				},
-				required: false,
-				default: [],
+								default: [],
 				placeholder: 'Sent',
 				description: 'Filter by message statuses',
 				displayOptions: {
@@ -459,8 +454,7 @@ export class ComteleGateway implements INodeType {
 				displayName: 'Sender',
 				name: 'sender',
 				type: 'string',
-				required: false,
-				default: '',
+								default: '',
 				placeholder: '11999997777',
 				description: 'Filter by sender phone number',
 				displayOptions: {
@@ -474,7 +468,6 @@ export class ComteleGateway implements INodeType {
 				displayName: 'Skip',
 				name: 'skip',
 				type: 'number',
-				required: false,
 				default: 0,
 				description: 'Number of records to skip',
 				displayOptions: {
@@ -488,9 +481,11 @@ export class ComteleGateway implements INodeType {
 				displayName: 'Limit',
 				name: 'limit',
 				type: 'number',
-				required: false,
-				default: 10,
-				description: 'Maximum number of records to return',
+				typeOptions: {
+					minValue: 1,
+				},
+				default: 50,
+				description: 'Max number of results to return',
 				displayOptions: {
 					show: {
 						resource: ['other'],
@@ -531,8 +526,7 @@ export class ComteleGateway implements INodeType {
 				typeOptions: {
 					multipleValues: true,
 				},
-				required: false,
-				default: [],
+								default: [],
 				description: 'List of contact group IDs',
 				displayOptions: {
 					show: {
@@ -571,8 +565,7 @@ export class ComteleGateway implements INodeType {
 				displayName: 'Schedule Date',
 				name: 'scheduleDate',
 				type: 'string',
-				required: false,
-				default: '',
+								default: '',
 				placeholder: '2024-06-10T14:30:00Z',
 				description: 'Optional scheduled date in format yyyy-MM-ddTHH:mm:ssZ',
 				displayOptions: {
@@ -592,12 +585,11 @@ export class ComteleGateway implements INodeType {
 				displayName: 'Custom',
 				name: 'custom',
 				type: 'string',
-				required: false,
-				default: '',
+								default: '',
 				description: 'Custom field',
 				displayOptions: {
 					show: {
-						resource: ['sms', 'rcs', 'others'],
+						resource: ['sms', 'rcs', 'other'],
 						operation: [
 							'sendRcsBasicMessage',
 							'sendRcsCardMessage',
@@ -613,12 +605,11 @@ export class ComteleGateway implements INodeType {
 				displayName: 'Tag',
 				name: 'tag',
 				type: 'string',
-				required: false,
-				default: '',
+								default: '',
 				description: 'Message tag',
 				displayOptions: {
 					show: {
-						resource: ['sms', 'rcs', 'others'],
+						resource: ['sms', 'rcs', 'other'],
 						operation: [
 							'sendRcsBasicMessage',
 							'sendRcsCardMessage',
@@ -655,7 +646,6 @@ export class ComteleGateway implements INodeType {
 				type: 'string',
 				required: true,
 				default: '',
-				description: 'Card title',
 				displayOptions: {
 					show: {
 						resource: ['rcs'],
@@ -681,8 +671,7 @@ export class ComteleGateway implements INodeType {
 				displayName: 'Card Image',
 				name: 'cardImage',
 				type: 'string',
-				required: false,
-				default: '',
+								default: '',
 				placeholder: 'https://example.com/image.jpg',
 				description: 'Card image URL',
 				displayOptions: {
@@ -754,7 +743,6 @@ export class ComteleGateway implements INodeType {
 								name: 'cardTitle',
 								type: 'string',
 								default: '',
-								description: 'Card title',
 							},
 							{
 								displayName: 'Card Message',
@@ -837,7 +825,6 @@ export class ComteleGateway implements INodeType {
 				type: 'string',
 				required: true,
 				default: '',
-				description: 'File name',
 				displayOptions: {
 					show: {
 						resource: ['rcs'],
@@ -851,8 +838,7 @@ export class ComteleGateway implements INodeType {
 				displayName: 'Receiver',
 				name: 'receiver',
 				type: 'string',
-				required: false,
-				default: '',
+								default: '',
 				placeholder: '11999997777',
 				description: 'Filter by receiver phone number',
 				displayOptions: {
@@ -866,8 +852,7 @@ export class ComteleGateway implements INodeType {
 				displayName: 'Content',
 				name: 'content',
 				type: 'string',
-				required: false,
-				default: '',
+								default: '',
 				placeholder: 'Hello, this is a test message',
 				displayOptions: {
 					show: {
@@ -879,4 +864,5 @@ export class ComteleGateway implements INodeType {
 		],
 	};
 }
+
 

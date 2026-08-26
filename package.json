@@ -36,8 +36,8 @@
   },
   "files": [
     "dist",
-    "nodes/ComteleGateway/ComteleGateway.node.json",
-    "nodes/ComteleGateway/comtelegateway.svg",
+    "nodes/Comtele/ComteleGateway.node.json",
+    "nodes/Comtele/comtelegateway.svg",
     "credentials/comtelegateway.svg",
     "LICENSE",
     "README.md"
@@ -45,7 +45,7 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "nodes": [
-      "dist/nodes/ComteleGateway/Comtele.node.js"
+      "dist/nodes/Comtele/Comtele.node.js"
     ],
     "credentials": [
       "dist/credentials/ComteleGatewayApi.credentials.js"
