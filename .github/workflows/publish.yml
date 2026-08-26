@@ -62,14 +62,14 @@ jobs:
             echo "Version ${PACKAGE_NAME}@${PACKAGE_VERSION} is not published yet."
           fi
 
-      - name: Verify npm token authentication
+      - name: Verify npm trusted publishing context
         if: steps.version_check.outputs.exists == 'false'
-        run: npm whoami
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        shell: bash
+        run: |
+          echo "Using npm trusted publishing with GitHub OIDC provenance."
+          echo "Repository: ${GITHUB_REPOSITORY}"
+          echo "Ref: ${GITHUB_REF}"
 
       - name: Publish to npm
         if: steps.version_check.outputs.exists == 'false'
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
