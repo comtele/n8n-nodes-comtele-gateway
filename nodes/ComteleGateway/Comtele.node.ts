@@ -1,4 +1,9 @@
-import { INodeType, INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
+import {
+	IHttpRequestOptions,
+	INodeType,
+	INodeTypeDescription,
+	NodeConnectionTypes,
+} from 'n8n-workflow';
 
 export class ComteleGateway implements INodeType {
 	description: INodeTypeDescription = {
@@ -8,6 +13,7 @@ export class ComteleGateway implements INodeType {
 		icon: 'file:comtelegateway.svg',
 		group: ['transform'],
 		version: 1,
+		usableAsTool: true,
 		subtitle: '={{$parameter["resource"] + ": " + $parameter["operation"]}}',
 		description: 'Send SMS and RCS messages',
 		defaults: {
@@ -47,8 +53,8 @@ export class ComteleGateway implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
-						name: 'Others',
-						value: 'others',
+						name: 'Other',
+						value: 'other',
 					},
 					{
 						name: 'RCS',
@@ -208,7 +214,7 @@ export class ComteleGateway implements INodeType {
 				noDataExpression: true,
 				displayOptions: {
 					show: {
-						resource: ['others'],
+						resource: ['other'],
 					},
 				},
 				options: [
@@ -289,7 +295,7 @@ export class ComteleGateway implements INodeType {
 						routing: {
 							send: {
 								preSend: [
-									async function (this, requestOptions) {
+									async function (this, requestOptions): Promise<IHttpRequestOptions> {
 										const statuses = this.getNodeParameter('statuses', 0) as string[];
 										if (statuses && Array.isArray(statuses) && statuses.length > 0) {
 											const baseUrl = requestOptions.url || '';
@@ -335,7 +341,7 @@ export class ComteleGateway implements INodeType {
 						routing: {
 							send: {
 								preSend: [
-									async function (this, requestOptions) {
+									async function (this, requestOptions): Promise<IHttpRequestOptions> {
 										const statuses = this.getNodeParameter('statuses', 0) as string[];
 										if (statuses && Array.isArray(statuses) && statuses.length > 0) {
 											const baseUrl = requestOptions.url || '';
@@ -392,7 +398,7 @@ export class ComteleGateway implements INodeType {
 				description: 'The ID of the message request to cancel',
 				displayOptions: {
 					show: {
-						resource: ['others'],
+						resource: ['other'],
 						operation: ['cancelMessagesRequest'],
 					},
 				},
@@ -409,7 +415,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Start date in format yyyy-MM-ddTHH:mm:ssZ',
 				displayOptions: {
 					show: {
-						resource: ['others'],
+						resource: ['other'],
 						operation: ['getMessagesRequestsReport', 'receivedMessagesReport', 'sentMessagesReport'],
 					},
 				},
@@ -424,7 +430,7 @@ export class ComteleGateway implements INodeType {
 				description: 'End date in format yyyy-MM-ddTHH:mm:ssZ',
 				displayOptions: {
 					show: {
-						resource: ['others'],
+						resource: ['other'],
 						operation: ['getMessagesRequestsReport', 'receivedMessagesReport', 'sentMessagesReport'],
 					},
 				},
@@ -444,7 +450,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Filter by message statuses',
 				displayOptions: {
 					show: {
-						resource: ['others'],
+						resource: ['other'],
 						operation: ['receivedMessagesReport', 'sentMessagesReport'],
 					},
 				},
@@ -459,7 +465,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Filter by sender phone number',
 				displayOptions: {
 					show: {
-						resource: ['others'],
+						resource: ['other'],
 						operation: ['receivedMessagesReport'],
 					},
 				},
@@ -473,7 +479,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Number of records to skip',
 				displayOptions: {
 					show: {
-						resource: ['others'],
+						resource: ['other'],
 						operation: ['getMessagesRequestsReport', 'receivedMessagesReport', 'sentMessagesReport'],
 					},
 				},
@@ -487,7 +493,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Maximum number of records to return',
 				displayOptions: {
 					show: {
-						resource: ['others'],
+						resource: ['other'],
 						operation: ['getMessagesRequestsReport', 'receivedMessagesReport', 'sentMessagesReport'],
 					},
 				},
@@ -851,7 +857,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Filter by receiver phone number',
 				displayOptions: {
 					show: {
-						resource: ['others'],
+						resource: ['other'],
 						operation: ['sentMessagesReport'],
 					},
 				},
@@ -865,7 +871,7 @@ export class ComteleGateway implements INodeType {
 				placeholder: 'Hello, this is a test message',
 				displayOptions: {
 					show: {
-						resource: ['others'],
+						resource: ['other'],
 						operation: ['sentMessagesReport'],
 					},
 				},
@@ -873,3 +879,4 @@ export class ComteleGateway implements INodeType {
 		],
 	};
 }
+
