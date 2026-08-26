@@ -58,7 +58,7 @@ export class ComteleGateway implements INodeType {
 					},
 					{
 						name: 'RCS',
-						value: 'rcs',
+						value: 'rcsMessage',
 					},
 					{
 						name: 'SMS',
@@ -109,7 +109,7 @@ export class ComteleGateway implements INodeType {
 				noDataExpression: true,
 				displayOptions: {
 					show: {
-						resource: ['rcs'],
+						resource: ['rcsMessage'],
 					},
 				},
 				options: [
@@ -508,7 +508,7 @@ export class ComteleGateway implements INodeType {
 				description: 'List of recipient phone numbers',
 				displayOptions: {
 					show: {
-						resource: ['sms', 'rcs'],
+						resource: ['sms', 'rcsMessage'],
 						operation: [
 							'sendRcsBasicMessage',
 							'sendRcsCardMessage',
@@ -530,7 +530,7 @@ export class ComteleGateway implements INodeType {
 				description: 'List of contact group IDs',
 				displayOptions: {
 					show: {
-						resource: ['sms', 'rcs'],
+						resource: ['sms', 'rcsMessage'],
 						operation: [
 							'sendRcsBasicMessage',
 							'sendRcsCardMessage',
@@ -550,7 +550,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Route ID to use for sending',
 				displayOptions: {
 					show: {
-						resource: ['sms', 'rcs'],
+						resource: ['sms', 'rcsMessage'],
 						operation: [
 							'sendRcsBasicMessage',
 							'sendRcsCardMessage',
@@ -570,7 +570,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Optional scheduled date in format yyyy-MM-ddTHH:mm:ssZ',
 				displayOptions: {
 					show: {
-						resource: ['sms', 'rcs'],
+						resource: ['sms', 'rcsMessage'],
 						operation: [
 							'sendRcsBasicMessage',
 							'sendRcsCardMessage',
@@ -589,7 +589,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Custom field',
 				displayOptions: {
 					show: {
-						resource: ['sms', 'rcs', 'other'],
+						resource: ['sms', 'rcsMessage', 'other'],
 						operation: [
 							'sendRcsBasicMessage',
 							'sendRcsCardMessage',
@@ -609,7 +609,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Message tag',
 				displayOptions: {
 					show: {
-						resource: ['sms', 'rcs', 'other'],
+						resource: ['sms', 'rcsMessage', 'other'],
 						operation: [
 							'sendRcsBasicMessage',
 							'sendRcsCardMessage',
@@ -633,7 +633,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Message content',
 				displayOptions: {
 					show: {
-						resource: ['sms', 'rcs'],
+						resource: ['sms', 'rcsMessage'],
 						operation: ['sendRcsBasicMessage', 'sendSmsMessage'],
 					},
 				},
@@ -648,7 +648,7 @@ export class ComteleGateway implements INodeType {
 				default: '',
 				displayOptions: {
 					show: {
-						resource: ['rcs'],
+						resource: ['rcsMessage'],
 						operation: ['sendRcsCardMessage'],
 					},
 				},
@@ -662,7 +662,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Card message content',
 				displayOptions: {
 					show: {
-						resource: ['rcs'],
+						resource: ['rcsMessage'],
 						operation: ['sendRcsCardMessage'],
 					},
 				},
@@ -676,7 +676,7 @@ export class ComteleGateway implements INodeType {
 				description: 'Card image URL',
 				displayOptions: {
 					show: {
-						resource: ['rcs'],
+						resource: ['rcsMessage'],
 						operation: ['sendRcsCardMessage'],
 					},
 				},
@@ -716,7 +716,7 @@ export class ComteleGateway implements INodeType {
 				],
 				displayOptions: {
 					show: {
-						resource: ['rcs'],
+						resource: ['rcsMessage'],
 						operation: ['sendRcsCardMessage'],
 					},
 				},
@@ -797,7 +797,7 @@ export class ComteleGateway implements INodeType {
 				],
 				displayOptions: {
 					show: {
-						resource: ['rcs'],
+						resource: ['rcsMessage'],
 						operation: ['sendRcsCarouselMessage'],
 					},
 				},
@@ -814,7 +814,7 @@ export class ComteleGateway implements INodeType {
 				description: 'File URL content',
 				displayOptions: {
 					show: {
-						resource: ['rcs'],
+						resource: ['rcsMessage'],
 						operation: ['sendRcsFileMessage'],
 					},
 				},
@@ -827,7 +827,7 @@ export class ComteleGateway implements INodeType {
 				default: '',
 				displayOptions: {
 					show: {
-						resource: ['rcs'],
+						resource: ['rcsMessage'],
 						operation: ['sendRcsFileMessage'],
 					},
 				},
@@ -864,5 +864,6 @@ export class ComteleGateway implements INodeType {
 		],
 	};
 }
+
 
 
