@@ -57,7 +57,7 @@ export class ComteleGateway implements INodeType {
 						value: 'other',
 					},
 					{
-						name: 'RCS',
+						name: 'RCS Message',
 						value: 'rcsMessage',
 					},
 					{
