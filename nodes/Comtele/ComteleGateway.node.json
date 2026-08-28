@@ -1,5 +1,5 @@
 {
-	"node": "n8n-nodes-base.comteleGateway",
+	"node": "n8n-nodes-comtele-gateway.comteleGateway",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": [
