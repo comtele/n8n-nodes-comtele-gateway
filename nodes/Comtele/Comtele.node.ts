@@ -9,7 +9,7 @@ export class ComteleGateway implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'SMS/RCS Message Gateway by Comtele',
 		documentationUrl: 'https://developers.comtele.com.br/',
-		name: 'comtele',
+		name: 'comteleGateway',
 		icon: 'file:comtelegateway.svg',
 		group: ['transform'],
 		version: 1,
