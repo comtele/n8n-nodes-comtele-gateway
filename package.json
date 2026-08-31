@@ -45,7 +45,7 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "nodes": [
-      "dist/nodes/Comtele/Comtele.node.js"
+      "dist/nodes/Comtele/ComteleGateway.node.js"
     ],
     "credentials": [
       "dist/credentials/ComteleGatewayApi.credentials.js"
